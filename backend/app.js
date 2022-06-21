@@ -1,8 +1,9 @@
 const express = require('express');
 const app = express();
 //pack de securisation helmet
-var helmet = require('helmet');
-app.use(helmet());
+//var helmet = require('helmet');
+//app.use(helmet());
+
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');

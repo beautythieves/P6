@@ -18,3 +18,5 @@ const storage = multer.diskStorage({
 });
 
 module.exports = multer({storage: storage}).single('image');
+
+// pourquoi les req sont soulignés?
