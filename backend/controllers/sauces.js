@@ -1,5 +1,5 @@
 const Sauce = require('../models/sauces'); // importation du modèle de sauce
-const fs = require('fs');
+const fs = require('fs');// module fs pour interagir avec le système de fichiers
 /* création de sauce*/
 exports.createSauce = (req, res, next) => {
     const sauceObject = JSON.parse(req.body.sauce);
@@ -38,8 +38,8 @@ exports.getOneSauce = (req, res, next) => {
 exports.deleteSauce = (req, res, next) => {
     Sauce.findOne({ _id: req.params.id })
       .then(sauce => {
-        const filename = sauce.imageUrl.split('/images/')[1];
-        fs.unlink(`images/${filename}`, () => {
+        const filename = sauce.imageUrl.split('/images/')[1];// récupération du nom de l'image
+        fs.unlink(`images/${filename}`, () => {// suppression du fichier
           Sauce.deleteOne({ _id: req.params.id })
             .then(() => res.status(200).json({ message: 'Sauce supprimée !'}))
             .catch(error => res.status(400).json({ error }));

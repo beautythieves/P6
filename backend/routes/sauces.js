@@ -6,12 +6,12 @@ const auth = require('../middleware/auth');
 const multer = require('../middleware/multer-config');
 
 const sauceCtrl = require('../controllers/sauces');
-// routes CRUD pour les sauces
-router.get('/', auth, sauceCtrl.getAllSauces);
-router.get('/:id', auth, sauceCtrl.getOneSauce);
-router.post('/', auth, multer, sauceCtrl.createSauce);
-router.put('/:id', auth, multer, sauceCtrl.modifySauce);
-router.delete('/:id', auth, sauceCtrl.deleteSauce);
+// routes CRUD (create, read, update, delete) pour les sauces
+router.get('/', auth, sauceCtrl.getAllSauces);// read
+router.get('/:id', auth, sauceCtrl.getOneSauce);//read
+router.post('/', auth, multer, sauceCtrl.createSauce);//  create
+router.put('/:id', auth, multer, sauceCtrl.modifySauce);// update
+router.delete('/:id', auth, sauceCtrl.deleteSauce);//  delete
 
 // route pour les likes & dislikes
 router.post("/:id/like", auth, sauceCtrl.likeSauce);
