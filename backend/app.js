@@ -9,7 +9,6 @@ const userRoutes = require('./routes/user');
 const dotenv = require('dotenv').config('../.env');
 console.log(dotenv);
 
-/*mongoose.connect('mongodb+srv://beautythieves:saucisse51@cluster0.9ah1z.mongodb.net/?retryWrites=true&w=majority',*/
 mongoose.connect(process.env.SECRET_MONGODB,
   { useNewUrlParser: true,
     useUnifiedTopology: true })

@@ -12,6 +12,7 @@ exports.signup = (req, res, next) => {
           email: req.body.email,
           password: hash
         });
+        console.log('signup', hash)
         user.save()
           .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
           .catch(error => res.status(400).json({ error }));
@@ -20,12 +21,13 @@ exports.signup = (req, res, next) => {
   };
 /* controleur connection à un compte utilisateur*/
 exports.login = (req, res, next) => {
-    console.log('login', req.body);
     User.findOne({ email: req.body.email })
         .then(user => {
+            console.log('login', user)
         if (!user) {
             return res.status(401).json({ error: 'Utilisateur non trouvé !' });
         }
+        console.log('login', user, req.body.password, user.password )
         bcrypt.compare(req.body.password, user.password)
             .then(valid => {
             if (!valid) {
@@ -35,7 +37,7 @@ exports.login = (req, res, next) => {
                 userId: user._id,
                 token: jwt.sign(
                 { userId: user._id },
-                'RANDOM_TOKEN_SECRET',
+                process.env.TOKEN,
                 { expiresIn: '24h' }
                 )
             });
